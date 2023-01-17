@@ -14,11 +14,8 @@ export class CharactersService {
   constructor(private http: HttpClient) {}
 
   getCharacters(): Observable<CharacterResults[]> {
-    return this.http.get<Character>(`${this.API_URL}/episode`).pipe(
-      map((data: Character) =>
-        data.results
-      )
-    );
+    return this.http.get<CharacterResults[]>(`${this.API_URL}/episode`);
+    // .pipe(map((data: Character) => data.results));
   }
 
   getCharacter(id: number): Observable<CharacterResults> {

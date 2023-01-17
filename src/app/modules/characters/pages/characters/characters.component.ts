@@ -1,7 +1,9 @@
+import { selectLoadingCharacters } from './../../../../state/selectors/characters.selectors';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CharacterResults } from '../../characters.interface';
-import { CharactersService } from '../../services/characters.service';
+import { Store } from '@ngrx/store';
+import { loadCharacters } from 'src/app/state/actions/characters.actions';
 
 @Component({
   selector: 'characters',
@@ -10,12 +12,13 @@ import { CharactersService } from '../../services/characters.service';
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent implements OnInit {
-  characters$: Observable<CharacterResults[]>;
+  loading$: Observable<boolean> = new Observable();
+  characters$: Observable<CharacterResults[]> = new Observable();
 
-  constructor(private charactersService: CharactersService) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.characters$ = this.charactersService.getCharacters();
-    // this.characters$.subscribe(console.log);
+    this.loading$ = this.store.select(selectLoadingCharacters);
+    this.store.dispatch(loadCharacters());
   }
 }

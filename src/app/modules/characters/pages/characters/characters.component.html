@@ -1,1 +1,1 @@
-<simple-card [data]="characters$ | async"></simple-card>
+<span *ngIf="loading$ | async">Loading...</span> <simple-card></simple-card>

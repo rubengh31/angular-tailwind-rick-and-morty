@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { selectCharactersCards } from './../../../../state/selectors/characters.selectors';
+import { Observable } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { AppState } from 'src/app/state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'simple-card',
@@ -7,23 +18,21 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
   styleUrls: ['./simple-card.component.scss'],
 })
 export class SimpleCardComponent implements OnInit {
-  @Input() data: any;
-  @Output() clickOnCharacterFromEpisode: EventEmitter<boolean> = new EventEmitter();
-  
-  constructor() {}
+  @Output() clickOnCharacterFromEpisode: EventEmitter<boolean> =
+    new EventEmitter();
+  loaded$: Observable<any> = new Observable();
 
-  ngOnInit(): void {}
+  constructor(private store: Store<AppState>) {}
 
-  /**
-   * A custom TrackByFunction is useful to provide good user experience in cases when items in an iterable rendered using NgForOf have a natural identifier
-   * (for example, custom ID or a primary key), and this iterable could be updated with new object instances that still represent the same underlying entity (for example,
-   * when data is re-fetched from the server, and the iterable is recreated and re-rendered, but most of the data is still the same).
-   */
+  ngOnInit(): void {
+    this.loaded$ = this.store.select(selectCharactersCards);
+  }
+
   trackByFn(item: any): number {
     return item.id;
   }
 
-  navigateToSpecificCharacterOfAnEpisode(character: any){
+  navigateToSpecificCharacterOfAnEpisode(character: any) {
     this.clickOnCharacterFromEpisode.emit(character);
   }
 }
