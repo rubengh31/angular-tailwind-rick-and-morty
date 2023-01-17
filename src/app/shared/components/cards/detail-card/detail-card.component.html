@@ -1,0 +1,23 @@
+<div class="detail-card__container">
+  <div class="block detail-card__profile-pic">
+    <img src="{{data?.image}}" alt="{{data?.name}}">
+  </div>
+  <div class="block detail-card__information">
+    <h1>{{data?.name}}</h1>
+    <ng-container *ngIf="name === 'characters'">
+      <p class="detail-card__expertise">Status: {{data?.status}} - Specie: {{data?.species}}</p>
+      <address>{{data?.location?.name}}</address>
+      <p>Episodes: {{data?.episode.length}}</p>
+      <p>Start date: {{data?.created | date}}</p>
+    </ng-container>
+
+    <ng-container *ngIf="name === 'episodes'">
+      <p class="detail-card__expertise">Episode: {{data?.episode}}</p>
+      <p class="detail-card__expertise">
+        Characters: {{data?.characters?.length}}
+      </p>
+      <p>Created: {{data?.created | date}}</p>
+      <p>Air date: {{data?.air_date | date}}</p>
+    </ng-container>
+  </div>
+</div>

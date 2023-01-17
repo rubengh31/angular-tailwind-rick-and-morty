@@ -1,0 +1,48 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
+$project-primary: mat.define-palette(mat.$indigo-palette);
+$project-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$project-warn: mat.define-palette(mat.$red-palette);
+$project-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $project-primary,
+      accent: $project-accent,
+      warn: $project-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($project-theme);
+
+@font-face {
+  font-family: Shlop;
+  src: url(assets/fonts/shlop.ttf) format("truetype");
+}
+
+.Shlop {
+  font-family: Shlop;
+}
+
+* {
+  box-sizing: borde-box;
+  margin: 0;
+  padding: 0;
+  font-family: Shlop;
+  font-size: 20px;
+}
+
+body {
+  background-color: #fff;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

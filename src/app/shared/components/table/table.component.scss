@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  cursor: pointer;
+}
+
+th {
+  cursor: context-menu;
+}
+
+.tableHeaderCellDiv {
+  resize: horizontal;
+  overflow: hidden;
+}
+
+.even {
+  background-color: #3f51b50a;
+}
+
+.odd {
+  background-color:#f4f4f457;
+}

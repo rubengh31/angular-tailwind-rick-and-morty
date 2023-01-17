@@ -1,0 +1,24 @@
+<div class="simple-card__container">
+    <ng-container *ngIf="!data?.characters; else charactersFromAnEpisode">
+        <div class="simple-card__card" *ngFor="let character of data; trackBy: trackByFn">
+            <div class="simple-card__box">
+                <div class="simple-card__content">
+                    <h2>{{character?.id}}</h2>
+                    <h3>{{character?.name}}</h3>
+                    <a routerLink="{{character?.id}}">Read More</a>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #charactersFromAnEpisode>
+        <div class="simple-card__card" *ngFor="let character of data.characters; trackBy: trackByFn">
+            <div class="simple-card__box">
+                <div class="simple-card__content">
+                    <h2>{{character?.id}}</h2>
+                    <h3>{{character?.name}}</h3>
+                    <a (click)="navigateToSpecificCharacterOfAnEpisode(character)">Read More</a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
