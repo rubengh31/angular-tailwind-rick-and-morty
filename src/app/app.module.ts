@@ -15,6 +15,8 @@ import { TimeAgoPipe } from './shared/pipes/timeAgo.pipe';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -22,6 +24,9 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: 'NGRX' }),

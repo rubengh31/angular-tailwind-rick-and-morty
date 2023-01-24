@@ -5,22 +5,36 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
 const routes: Routes = [
   {
     path: 'characters',
-    loadChildren: () => import('./modules/characters/characters.module').then(m => m.CharactersModule)
+    loadChildren: () =>
+      import('./modules/characters/characters.module').then(
+        (m) => m.CharactersModule
+      ),
   },
   {
     path: 'episodes',
-    loadChildren: () => import('./modules/episodes/episodes.module').then(m => m.EpisodesModule)
+    loadChildren: () =>
+      import('./modules/episodes/episodes.module').then(
+        (m) => m.EpisodesModule
+      ),
   },
   {
     path: 'locations',
-    loadChildren: () => import('./modules/locations/locations.module').then(m => m.LocationsModule)
+    loadChildren: () =>
+      import('./modules/locations/locations.module').then(
+        (m) => m.LocationsModule
+      ),
+  },
+  {
+    path: 'crud',
+    loadChildren: () =>
+      import('./modules/crud/crud.module').then((m) => m.CrudModule),
   },
   { path: '', redirectTo: 'episodes', pathMatch: 'full' },
-  { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

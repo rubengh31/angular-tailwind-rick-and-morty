@@ -1,7 +1,6 @@
 import { selectLoadingCharacters } from './../../../../state/selectors/characters.selectors';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CharacterResults } from '../../characters.interface';
 import { Store } from '@ngrx/store';
 import { loadCharacters } from 'src/app/state/actions/characters.actions';
 
@@ -13,7 +12,6 @@ import { loadCharacters } from 'src/app/state/actions/characters.actions';
 })
 export class CharactersComponent implements OnInit {
   loading$: Observable<boolean> = new Observable();
-  characters$: Observable<CharacterResults[]> = new Observable();
 
   constructor(private store: Store<any>) {}
 

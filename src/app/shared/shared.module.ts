@@ -1,4 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  NgModule,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { DetailCardComponent } from './components/cards/detail-card/detail-card.component';
 import { SimpleCardComponent } from './components/cards/simple-card/simple-card.component';
 import { TableComponent } from './components/table/table.component';
@@ -12,21 +16,17 @@ import { InputSearchComponent } from './components/input-search/input-search.com
     SimpleCardComponent,
     DetailCardComponent,
     TableComponent,
-    InputSearchComponent
+    InputSearchComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MaterialModule,
-  ],
+  imports: [CommonModule, RouterModule, MaterialModule],
   exports: [
     SimpleCardComponent,
     DetailCardComponent,
     TableComponent,
-    InputSearchComponent
+    InputSearchComponent,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA,  NO_ERRORS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [],
-  bootstrap: []
+  bootstrap: [],
 })
-export class SharedModule { }
+export class SharedModule {}

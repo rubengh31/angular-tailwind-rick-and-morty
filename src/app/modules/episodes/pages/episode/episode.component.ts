@@ -30,6 +30,6 @@ export class EpisodeComponent implements OnInit {
       })
     );
 
-    // this.episode$.subscribe(console.log)
+    this.episode$.subscribe(console.log);
   }
 }
