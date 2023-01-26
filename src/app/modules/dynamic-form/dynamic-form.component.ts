@@ -7,19 +7,19 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./dynamic-form.component.scss'],
 })
 export class DynamicFormComponent {
-  orderForm!: FormGroup;
+  form!: FormGroup;
   items: FormArray;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       items: this.formBuilder.array([this.createItem()]),
     });
   }
 
   get arrayFormData() {
-    return <FormArray>this.orderForm.get('items');
+    return <FormArray>this.form.get('items');
   }
 
   createItem(): FormGroup {
@@ -30,32 +30,17 @@ export class DynamicFormComponent {
     });
   }
 
-  addItem(e: any): void {
-    this.items = this.orderForm.get('items') as FormArray;
+  addItem(): void {
+    this.items = this.form.get('items') as FormArray;
     this.items.push(this.createItem());
   }
 
-  deleteItemLine(e: any, i: any): void {
-    e.preventDefault();
-    this.items = this.orderForm.get('items') as FormArray;
-    console.log(this.items);
+  deleteItemLine(i: any): void {
+    this.items = this.form.get('items') as FormArray;
     this.items.removeAt(i);
   }
 
   submitForm(data: any) {
-    //event.preventDefault();
     console.log(data);
-  }
-
-  getTotalPrice(): any {
-    this.items = this.orderForm.get('items') as FormArray;
-    let items = this.items.value;
-    let total = 0;
-    for (let item of items) {
-      total += parseFloat(item.price);
-    }
-    if (!isNaN(total)) {
-      return total.toFixed(2);
-    }
   }
 }
