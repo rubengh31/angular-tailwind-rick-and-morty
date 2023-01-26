@@ -36,6 +36,13 @@ const routes: Routes = [
         (m) => m.DynamicFormModule
       ),
   },
+  {
+    path: 'infinite-scroll',
+    loadChildren: () =>
+      import('./modules/infinite-scroll/infinite-scroll.module').then(
+        (m) => m.InfiniteScrollModule
+      ),
+  },
   { path: '', redirectTo: 'episodes', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
