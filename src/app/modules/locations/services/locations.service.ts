@@ -7,15 +7,14 @@ import { Locations } from '../locations.interface';
 @Injectable({
   providedIn: 'root',
 })
-
 export class LocationsService {
-  private API_URL = environment.API_URL;
+  private API_URL = 'https://rickandmortyapi.com/api';
 
   constructor(private http: HttpClient) {}
 
   getLocations(): Observable<Locations[]> {
-    return this.http.get<Locations[]>(`${this.API_URL}/location`).pipe(
-      map((res:any)=> res.results)
-    );
+    return this.http
+      .get<Locations[]>(`${this.API_URL}/location`)
+      .pipe(map((res: any) => res.results));
   }
 }

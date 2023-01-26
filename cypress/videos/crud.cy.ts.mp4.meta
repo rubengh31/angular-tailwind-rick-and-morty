@@ -1,0 +1,11 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=2440
+END=5070
+title=Crud Fill information and add new product
+[CHAPTER]
+TIMEBASE=1/1000
+START=-4371
+END=7707
+title=Crud Edit an existent product

@@ -7,18 +7,21 @@
         formControlName="title"
         placeholder="Title"
         type="text"
+        data-cy="crud-input-title"
       />
       <input
         class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mt-2"
         formControlName="price"
         placeholder="Price"
         type="text"
+        data-cy="crud-input-price"
       />
       <input
         class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mt-2"
         formControlName="description"
         placeholder="Description"
         type="text"
+        data-cy="crud-input-description"
       />
     </div>
     <div class="px-6 pt-4 pb-2">
@@ -26,12 +29,14 @@
         <button
           class="float-right inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
           (click)="cancel()"
+          data-cy="crud-product-button-cancel"
         >
           Cancel
         </button>
         <button
           class="float-right inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2"
           (click)="update(productsForm.value)"
+          data-cy="crud-product-button-edit"
         >
           Edit product
         </button>
@@ -41,6 +46,7 @@
           class="float-right inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-700 mr-2 mb-2"
           (click)="create()"
           [disabled]="productsForm.invalid"
+          data-cy="crud-product-button-add"
         >
           Add new product
         </button>
@@ -100,6 +106,7 @@
               <button
                 x-data="{ tooltip: 'Delete' }"
                 (click)="delete(product.id)"
+                data-cy="crud-product-remove-from-table"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -118,8 +125,9 @@
                 </svg>
               </button>
               <button
-                x-data="{ tooltip: 'Edite' }"
+                x-data="{ tooltip: 'Edit' }"
                 (click)="loadProductSelected(product.id)"
+                data-cy="crud-product-edit-from-table"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

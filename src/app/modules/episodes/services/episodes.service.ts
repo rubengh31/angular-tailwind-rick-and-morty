@@ -14,7 +14,7 @@ import { TimeAgoPipe } from '../../../shared/pipes/timeAgo.pipe';
   providedIn: 'root', // with the provider as ‘root’ then such instances become single and shared instances for the one app instances.
 }) // This same singleton shared instance will be called everywhere as and when the instance is needed to be used.
 export class EpisodesService {
-  private API_URL = environment.API_URL;
+  private API_URL = 'https://rickandmortyapi.com/api';
 
   constructor(private http: HttpClient, private TimeAgoPipe: TimeAgoPipe) {}
 

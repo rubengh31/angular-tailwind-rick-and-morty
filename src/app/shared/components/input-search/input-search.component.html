@@ -1,6 +1,12 @@
 <form class="search-form">
   <mat-form-field appearance="outline">
     <mat-label>{{ name }}</mat-label>
-    <input type="text" matInput [formControl]="searchForm" placeholder="Search...">
+    <input
+      #input
+      type="text"
+      matInput
+      [formControl]="searchForm"
+      placeholder="Search..."
+    />
   </mat-form-field>
 </form>

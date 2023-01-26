@@ -9,7 +9,7 @@ import { Character, CharacterResults } from '../characters.interface';
   providedIn: 'root',
 })
 export class CharactersService {
-  private API_URL = environment.API_URL;
+  private API_URL = 'https://rickandmortyapi.com/api';
 
   constructor(private http: HttpClient) {}
 

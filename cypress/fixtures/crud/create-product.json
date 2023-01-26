@@ -1,0 +1,7 @@
+{
+  "title": "Create with Cypress!",
+  "price": "100",
+  "description": "Golden",
+  "categoryId": 1,
+  "images": ["https://placeimg.com/640/480/any"]
+}
