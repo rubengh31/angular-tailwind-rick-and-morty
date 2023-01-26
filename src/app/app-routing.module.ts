@@ -29,6 +29,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/crud/crud.module').then((m) => m.CrudModule),
   },
+  {
+    path: 'dynamic-form',
+    loadChildren: () =>
+      import('./modules/dynamic-form/dynamic-form.module').then(
+        (m) => m.DynamicFormModule
+      ),
+  },
   { path: '', redirectTo: 'episodes', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
