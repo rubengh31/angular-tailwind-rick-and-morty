@@ -29,7 +29,5 @@ export class EpisodeComponent implements OnInit {
         return this.episodesService.getEpisode(id);
       })
     );
-
-    this.episode$.subscribe(console.log);
   }
 }

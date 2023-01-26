@@ -4,9 +4,10 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 import { Product } from './crud.interface';
-import { Observable, first } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -15,11 +16,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./crud.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CrudComponent implements OnInit {
+export class CrudComponent implements OnInit, OnDestroy {
   productsForm!: FormGroup;
   products$: Observable<Product[]>;
   productById$: Observable<Product>;
-
+  private destroy$ = new Subject<void>();
   editing: boolean = false;
 
   constructor(
@@ -29,7 +30,7 @@ export class CrudComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.products$ = this.crudService.getAll();
 
     this.productsForm = this.fb.group({
       id: [''],
@@ -39,10 +40,6 @@ export class CrudComponent implements OnInit {
       category: [''],
       images: [''],
     });
-  }
-
-  getAllProducts(): void {
-    this.products$ = this.crudService.getAll();
   }
 
   create(): void {
@@ -56,40 +53,54 @@ export class CrudComponent implements OnInit {
       images: ['https://placeimg.com/640/480/any'],
     };
 
-    this.crudService.createProduct(body).pipe(first()).subscribe();
+    this.crudService
+      .createProduct(body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.products$ = this.crudService.getAll();
+        this.cdr.detectChanges();
+      });
     this.resetForm();
-    this.getAllProducts();
-    this.cdr.detectChanges();
   }
 
   loadProductSelected(id: number): void {
     this.editing = true;
     this.productById$ = this.crudService.readProductById(id);
 
-    this.productById$.pipe(first()).subscribe((product: Product) => {
-      this.productsForm.patchValue({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        description: product.description,
-        category: product.category,
-        images: product.images,
+    this.productById$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((product: Product) => {
+        this.productsForm.patchValue({
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          description: product.description,
+          category: product.category,
+          images: product.images,
+        });
       });
-    });
   }
 
   update(body: Product): void {
-    this.crudService.updateProduct(body.id, body).pipe(first()).subscribe();
+    this.crudService
+      .updateProduct(body.id, body)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.products$ = this.crudService.getAll();
+        this.cdr.detectChanges();
+      });
     this.resetForm();
-    this.getAllProducts();
-    this.cdr.detectChanges();
   }
 
   delete(id: number): void {
     if (window.confirm('Are you sure to delete this product?')) {
-      this.crudService.deleteProduct(id).pipe(first()).subscribe();
-      this.getAllProducts();
-      this.cdr.detectChanges();
+      this.crudService
+        .deleteProduct(id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+          this.products$ = this.crudService.getAll();
+          this.cdr.detectChanges();
+        });
     }
   }
 
@@ -104,5 +115,10 @@ export class CrudComponent implements OnInit {
 
   trackByFn(item: any): number {
     return item.id;
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

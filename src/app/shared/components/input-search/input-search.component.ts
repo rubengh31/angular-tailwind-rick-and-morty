@@ -12,6 +12,7 @@ import {
   debounceTime,
   distinctUntilChanged,
   filter,
+  first,
   fromEvent,
   map,
   Subscription,
@@ -38,6 +39,7 @@ export class InputSearchComponent implements OnInit {
         map((res) => res.trim().toLowerCase()),
         debounceTime(1000),
         distinctUntilChanged(),
+        first(),
         tap(() => {
           console.log(this.input.nativeElement.value);
         })
