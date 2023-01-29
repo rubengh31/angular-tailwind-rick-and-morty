@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, mergeMap } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 import { map } from 'rxjs';
-import { Character, CharacterResults } from '../characters.interface';
+import { CharacterResults } from '../characters.interface';
 export interface Cat {
   name: string;
   temperament: string;
@@ -41,18 +40,14 @@ export class CharactersService {
                   id: data.id,
                   name: data.name,
                   image: data.sprites.front_default,
-                  type: data.types.map((el: any) => el.type),
+                  type: data.types,
                 }))
               )
             )
           )
         )
       );
-
-    //     types.type.name
   }
-
-  // https://raw.githubusercontent.com/cheeaun/repokemon/master/data/pokemon-list.json
 
   getCats(page: number): Observable<Cat[]> {
     return this.http.get(

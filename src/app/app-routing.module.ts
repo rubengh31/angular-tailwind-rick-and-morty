@@ -43,6 +43,11 @@ const routes: Routes = [
         (m) => m.MyInfiniteScrollModule
       ),
   },
+  {
+    path: 'rxjs',
+    loadChildren: () =>
+      import('./modules/rxjs/rxjs.module').then((m) => m.RxjsModule),
+  },
   { path: '', redirectTo: 'episodes', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];

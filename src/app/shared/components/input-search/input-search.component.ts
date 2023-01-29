@@ -39,13 +39,12 @@ export class InputSearchComponent implements OnInit {
         map((res) => res.trim().toLowerCase()),
         debounceTime(1000),
         distinctUntilChanged(),
-        first(),
         tap(() => {
           console.log(this.input.nativeElement.value);
         })
       )
-      .subscribe((data: any) =>
-        this.searchFormChange.emit(data.trim().toLowerCase())
-      );
+      .subscribe((data: any) => {
+        this.searchFormChange.emit(data.trim().toLowerCase());
+      });
   }
 }
