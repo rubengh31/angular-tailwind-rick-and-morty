@@ -1,3 +1,4 @@
+import { MaterialModule } from './../../shared/material.module';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   NgModule,
@@ -8,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { InfiniteScrollRoutingModule } from './infinite-scroll.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollComponent } from './infinite-scroll.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [InfiniteScrollComponent],
@@ -19,11 +20,12 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    ScrollingModule,
+    InfiniteScrollModule,
+    MaterialModule,
   ],
   exports: [],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [],
 })
-export class InfiniteScrollModule {}
+export class MyInfiniteScrollModule {}

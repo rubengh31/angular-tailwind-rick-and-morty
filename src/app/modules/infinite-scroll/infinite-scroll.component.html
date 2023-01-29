@@ -1,8 +1,25 @@
-<!-- we use the virtual scroller component from the cdk module we imported -->
-<cdk-virtual-scroll-viewport itemSize="15"
-  ><!-- 15px for each element -->
-  <li *cdkVirtualFor="let item of dataSource">
-    <!-- we cycle trough the dataSource object getting new information if needed -->
-    {{ item }}
-  </li>
-</cdk-virtual-scroll-viewport>
+<div
+  infinite-scroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+>
+  <mat-card *ngFor="let cat of cats">
+    <mat-card-header>
+      <div>
+        <mat-card-title>{{ cat.name }}</mat-card-title>
+        <mat-card-subtitle
+          >Temperament: {{ cat.temperament }}</mat-card-subtitle
+        >
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="img-container">
+        <img *ngIf="cat.image" [src]="cat.image.url" width="100" height="100" />
+      </div>
+      <div>
+        <span>{{ cat.description }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

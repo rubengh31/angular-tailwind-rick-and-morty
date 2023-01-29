@@ -1,3 +1,10 @@
-cdk-virtual-scroll-viewport {
-  min-height: 100%;
+.mat-card {
+  margin: 10px !important;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.img-container {
+  float: left;
+  padding-right: 10px;
 }

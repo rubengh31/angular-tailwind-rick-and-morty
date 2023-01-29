@@ -1,10 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, mergeMap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { map } from 'rxjs';
 import { Character, CharacterResults } from '../characters.interface';
-
+export interface Cat {
+  name: string;
+  temperament: string;
+  image: any;
+  description: string;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -20,5 +25,38 @@ export class CharactersService {
 
   getCharacter(id: number): Observable<CharacterResults> {
     return this.http.get<CharacterResults>(`${this.API_URL}/character/${id}`);
+  }
+
+  getPokemons(limit: number, offset: number): Observable<any> {
+    return this.http
+      .get<any>(
+        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+      )
+      .pipe(
+        mergeMap((data: any) =>
+          forkJoin(
+            data.results.map((pokemon: any) =>
+              this.http.get(pokemon.url).pipe(
+                map((data: any) => ({
+                  id: data.id,
+                  name: data.name,
+                  image: data.sprites.front_default,
+                  type: data.types.map((el: any) => el.type),
+                }))
+              )
+            )
+          )
+        )
+      );
+
+    //     types.type.name
+  }
+
+  // https://raw.githubusercontent.com/cheeaun/repokemon/master/data/pokemon-list.json
+
+  getCats(page: number): Observable<Cat[]> {
+    return this.http.get(
+      `https://api.thecatapi.com/v1/breeds?page=${page}&limit=5`
+    ) as Observable<Cat[]>;
   }
 }

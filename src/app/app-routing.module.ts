@@ -40,7 +40,7 @@ const routes: Routes = [
     path: 'infinite-scroll',
     loadChildren: () =>
       import('./modules/infinite-scroll/infinite-scroll.module').then(
-        (m) => m.InfiniteScrollModule
+        (m) => m.MyInfiniteScrollModule
       ),
   },
   { path: '', redirectTo: 'episodes', pathMatch: 'full' },
