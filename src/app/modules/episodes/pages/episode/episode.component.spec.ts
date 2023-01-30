@@ -5,7 +5,10 @@ import { EpisodeComponent } from './episode.component';
 import { EpisodesService } from '../../services/episodes.service';
 import { TimeAgoPipe } from './../../../../shared/pipes/timeAgo.pipe';
 import { HttpClientModule } from '@angular/common/http';
-import { mockEpisodesService, singleEpisodeCustom } from '../../services/mockEpisodesService';
+import {
+  mockEpisodesService,
+  singleEpisodeCustom,
+} from '../../services/mockEpisodesService';
 import { of } from 'rxjs';
 
 describe('EpisodeComponent', () => {
@@ -17,7 +20,7 @@ describe('EpisodeComponent', () => {
       imports: [HttpClientModule, RouterTestingModule],
       declarations: [EpisodeComponent],
       providers: [
-        TimeAgoPipe,
+        v,
         { provide: EpisodesService, useValue: mockEpisodesService },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -35,7 +38,9 @@ describe('EpisodeComponent', () => {
   });
 
   it('Should call getEpisode()', () => {
-    spyOn(mockEpisodesService, 'getEpisode').and.returnValue(of(singleEpisodeCustom));
+    spyOn(mockEpisodesService, 'getEpisode').and.returnValue(
+      of(singleEpisodeCustom)
+    );
     spyOn(episodeComponent, 'getEpisode').and.callThrough();
     episodeComponent.getEpisode();
     expect(episodeComponent.getEpisode).toHaveBeenCalled();

@@ -10,9 +10,10 @@ import { RxjsRoutingModule } from './rxjs.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxjsComponent } from './rxjs.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { FilterPokemonPipe } from './filterPokemon.pipe';
 
 @NgModule({
-  declarations: [RxjsComponent],
+  declarations: [RxjsComponent, FilterPokemonPipe],
   imports: [
     CommonModule,
     SharedModule,

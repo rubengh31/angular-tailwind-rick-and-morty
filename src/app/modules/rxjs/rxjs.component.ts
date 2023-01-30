@@ -1,15 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { RxjsService } from './rxjs.service';
-import {
-  Observable,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  first,
-  map,
-  tap,
-} from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-rxjs',
@@ -20,7 +11,7 @@ export class RxjsComponent {
   limit: number = 151;
   offset: number = 0;
   pokemons$: Observable<any>;
-  public searchPokemon = new FormControl();
+  public searchPokemon = '';
   withSearchFilter: boolean = false;
   textSearched: string = '';
 
@@ -28,24 +19,6 @@ export class RxjsComponent {
 
   ngOnInit(): void {
     this.lowestOrderFirst();
-
-    this.searchPokemon?.valueChanges
-      .pipe(
-        filter(Boolean),
-        map((res) => res.trim().toLowerCase()),
-        debounceTime(1000),
-        distinctUntilChanged()
-      )
-      .subscribe((textSearched: any) => {
-        this.textSearched = textSearched;
-        this.pokemons$ = this.rxjsService
-          .getPokemons(this.limit, this.offset)
-          .pipe(
-            map((data) =>
-              data.filter((a: any) => a.name.includes(textSearched))
-            )
-          );
-      });
   }
 
   sortBy(event: any) {
@@ -60,13 +33,6 @@ export class RxjsComponent {
       this.highestOrderFirst();
     }
   }
-
-  //  if (textSearched.length > 0) {
-  //     this.withSearchFilter = true;
-  //   } else {
-  //     this.withSearchFilter = false;
-
-  //    }
 
   lowestOrderFirst() {
     this.pokemons$ = this.rxjsService.getPokemons(this.limit, this.offset);
