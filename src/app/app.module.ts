@@ -1,6 +1,6 @@
 import { CharactersEffects } from './state/effects/characters.effects';
 import { ROOT_REDUCERS } from './state/app.state';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   NgModule,
@@ -17,9 +17,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LoaderService } from './shared/components/loader/loader.service';
+import { LoaderInterceptor } from './core/interceptors/loader.interceptor';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +35,11 @@ import { CommonModule } from '@angular/common';
     StoreDevtoolsModule.instrument({ name: 'NGRX' }),
     EffectsModule.forRoot([CharactersEffects]),
   ],
-  providers: [TimeAgoPipe],
+  providers: [
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    TimeAgoPipe,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
 })

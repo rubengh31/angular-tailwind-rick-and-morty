@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RxjsService } from './rxjs.service';
-import { Observable, map } from 'rxjs';
+import { Observable, delay, map } from 'rxjs';
 
 @Component({
   selector: 'app-rxjs',
@@ -18,7 +18,7 @@ export class RxjsComponent {
   constructor(private rxjsService: RxjsService) {}
 
   ngOnInit(): void {
-    this.lowestOrderFirst();
+    this.pokemons$ = this.rxjsService.getPokemons(this.limit, this.offset);
   }
 
   sortBy(event: any) {
@@ -35,7 +35,9 @@ export class RxjsComponent {
   }
 
   lowestOrderFirst() {
-    this.pokemons$ = this.rxjsService.getPokemons(this.limit, this.offset);
+    this.pokemons$ = this.rxjsService
+      .getPokemons(this.limit, this.offset)
+      .pipe(map((data) => data.sort((a: any, b: any) => a.id - b.id)));
   }
 
   highestOrderFirst() {
