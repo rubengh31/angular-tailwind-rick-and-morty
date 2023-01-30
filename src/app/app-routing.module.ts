@@ -48,6 +48,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/rxjs/rxjs.module').then((m) => m.RxjsModule),
   },
+  {
+    path: 'flex-box',
+    loadChildren: () =>
+      import('./modules/flex-box/flex-box.module').then((m) => m.FlexBoxModule),
+  },
+  {
+    path: 'rxjs-operators',
+    loadChildren: () =>
+      import('./modules/rxjs-operators/rxjs-operators.module').then(
+        (m) => m.RxjsOperatorsModule
+      ),
+  },
   { path: '', redirectTo: 'episodes', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];

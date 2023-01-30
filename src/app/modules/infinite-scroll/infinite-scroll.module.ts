@@ -18,7 +18,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     SharedModule,
     InfiniteScrollRoutingModule,
     FormsModule,
-    CommonModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
     MaterialModule,

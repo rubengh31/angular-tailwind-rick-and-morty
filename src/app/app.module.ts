@@ -24,7 +24,6 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 @NgModule({
   declarations: [AppComponent, NavbarComponent, LoaderComponent],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

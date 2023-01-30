@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  background-color: white;
+  padding: 1px;
+  border: solid 2px;
+
+  display: flex;
+  /**************wrap/no-wrap**********************/
+  // flex-wrap: no-wrap; //no hace salto linea
+  flex-wrap: wrap; //hace salto linea
+
+  /**************align-items**********************/
+  // align-items: center; //alinea verticalmente (le debes dar un alto sino no va y SIN wrap)
+  height: 400px;
+
+  align-content: space-between;
+
+  flex-direction: column;
+}
+
+.flex-container div {
+  background-color: brown;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+  font-size: 30px;
+  border: solid 2px;
+  line-height: 75px;
+}
