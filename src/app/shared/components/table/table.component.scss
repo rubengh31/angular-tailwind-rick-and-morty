@@ -12,10 +12,15 @@ th {
   overflow: hidden;
 }
 
+.even,
+.odd {
+  color: #000;
+}
+
 .even {
-  background-color: #3f51b50a;
+  background-color: #ffffff;
 }
 
 .odd {
-  background-color:#f4f4f457;
+  background-color: #f4f4f4fe;
 }

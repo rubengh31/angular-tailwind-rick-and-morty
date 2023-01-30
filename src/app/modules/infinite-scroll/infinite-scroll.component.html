@@ -1,8 +1,10 @@
+<h1>Loading data scrolling</h1>
 <div
   infinite-scroll
   [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="1000"
   (scrolled)="onScroll()"
+  class="flex-container"
 >
   <mat-card *ngFor="let cat of cats">
     <mat-card-header>
@@ -14,9 +16,6 @@
       </div>
     </mat-card-header>
     <mat-card-content>
-      <div class="img-container">
-        <img *ngIf="cat.image" [src]="cat.image.url" width="100" height="100" />
-      </div>
       <div>
         <span>{{ cat.description }}</span>
       </div>

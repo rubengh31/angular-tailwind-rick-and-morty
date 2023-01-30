@@ -1,31 +1,69 @@
-<header class="navbar">
-  <div>
-    <img class="navbar__image" src="assets/images/logo-navbar.png" alt="logo" />
-  </div>
-  <nav>
-    <ul class="navbar__nav-links">
-      <li>
-        <a routerLink="/episodes">Episodes</a>
-      </li>
-      <li>
-        <a routerLink="/characters">Characters</a>
-      </li>
-      <li>
-        <a routerLink="/locations">Locations</a>
-      </li>
-      <li>
-        <a routerLink="/crud">Crud</a>
-      </li>
-      <li>
-        <a routerLink="/dynamic-form">Dynamic Form</a>
-      </li>
-      <li>
-        <a routerLink="/infinite-scroll">Infinite Scroll</a>
-      </li>
-      <li>
-        <a routerLink="/rxjs">RxJs</a>
-      </li>
-    </ul>
-  </nav>
-  <a routerLink="" class="navbar__btn">Contact</a>
-</header>
+<div class="container-flex">
+  <header>
+    <div class="imageHeaderDiv">
+      <img src="assets/images/pokemon.png" alt="logo" />
+    </div>
+    <div class="navHeaderDiv">
+      <nav>
+        <ul>
+          <li>
+            <a
+              routerLink="/episodes"
+              routerLinkActive="active"
+              [routerLink]="['/episodes']"
+              >Episodes</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/characters"
+              routerLinkActive="active"
+              [routerLink]="['/characters']"
+              >Characters</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/locations"
+              routerLinkActive="active"
+              [routerLink]="['/locations']"
+              >Locations</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/crud"
+              routerLinkActive="active"
+              [routerLink]="['/crud']"
+              >Crud</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/dynamic-form"
+              routerLinkActive="active"
+              [routerLink]="['/dynamic-form']"
+              >Dynamic Form</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/infinite-scroll"
+              routerLinkActive="active"
+              [routerLink]="['/infinite-scroll']"
+              >Infinite Scroll</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/rxjs"
+              routerLinkActive="active"
+              [routerLink]="['/rxjs']"
+              >RxJs</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
