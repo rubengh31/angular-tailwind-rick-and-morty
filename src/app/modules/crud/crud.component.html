@@ -73,7 +73,17 @@
       <tbody class="divide-y divide-gray-100 border-t border-gray-100">
         <tr
           class="hover:bg-gray-50"
-          *ngFor="let product of products; trackBy: trackByFn"
+          *ngFor="
+            let product of products
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index;
+            trackBy: trackByFn
+          "
         >
           <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
             <div class="relative h-10 w-10">
@@ -150,5 +160,13 @@
         </tr>
       </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange)="onTableDataChange($event)"
+      >
+      </pagination-controls>
+    </div>
   </div>
 </ng-container>

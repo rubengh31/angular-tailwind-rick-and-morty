@@ -3,6 +3,11 @@ table {
   cursor: pointer;
 }
 
+table,
+mat-paginator {
+  background: cornflowerblue;
+}
+
 th {
   cursor: context-menu;
 }

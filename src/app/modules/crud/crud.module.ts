@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { CrudRoutingModule } from './crud.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [CrudComponent],
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ],
   exports: [],
   providers: [],

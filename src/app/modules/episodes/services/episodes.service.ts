@@ -7,7 +7,6 @@ import {
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, mergeMap, zip, of, forkJoin } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { TimeAgoPipe } from '../../../shared/pipes/timeAgo.pipe';
 
 @Injectable({

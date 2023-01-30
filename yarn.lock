@@ -155,7 +155,7 @@
     "symbol-observable" "4.0.0"
     "yargs" "17.6.2"
 
-"@angular/common@^15.0.0 || ^16.0.0", "@angular/common@^15.1.0", "@angular/common@>=15.0.0 <16.0.0", "@angular/common@15.1.1":
+"@angular/common@^15.0.0 || ^16.0.0", "@angular/common@^15.1.0", "@angular/common@>=13.0.0", "@angular/common@>=15.0.0 <16.0.0", "@angular/common@15.1.1":
   "integrity" "sha512-P4f2rK/YBQQT4clQrcQ9goLf53RS63Q1x2d1dvz7Syr3gcOUyxO7NZQ7Au5afzvbIKZ5Okd+X0+TCGV4q9wQjw=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-15.1.1.tgz"
   "version" "15.1.1"
@@ -185,7 +185,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^15.0.0", "@angular/core@^15.0.0 || ^16.0.0", "@angular/core@^15.1.0", "@angular/core@>=15.0.0 <16.0.0", "@angular/core@15.1.1":
+"@angular/core@^15.0.0", "@angular/core@^15.0.0 || ^16.0.0", "@angular/core@^15.1.0", "@angular/core@>=13.0.0", "@angular/core@>=15.0.0 <16.0.0", "@angular/core@15.1.1":
   "integrity" "sha512-nsz+IXdkQanAGhqA2vcwTrGGyw5zIm3TgtYQ/JqK185qkmlhsQfSRvdSPsFPhmIFYp9ngZVUbkhY3D4P3gDzIg=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-15.1.1.tgz"
   "version" "15.1.1"
@@ -5524,6 +5524,13 @@
   "integrity" "sha512-FSP5UphRdl47vW8f/dRnPAU+napzruAKizBX2HS7MH292Ca+va6IU0J5+UQQmO5rXod2RZV7UhJ6+7g4xLfs1A=="
   "resolved" "https://registry.npmjs.org/ngx-infinite-scroll/-/ngx-infinite-scroll-15.0.0.tgz"
   "version" "15.0.0"
+  dependencies:
+    "tslib" "^2.3.0"
+
+"ngx-pagination@^6.0.3":
+  "integrity" "sha512-lONjTQ7hFPh1SyhwDrRd5ZwM4NMGQ7bNR6vLrs6mrU0Z8Q1zCcWbf/pvyp4DOlGyd9uyZxRy2wUsSZLeIPjbAw=="
+  "resolved" "https://registry.npmjs.org/ngx-pagination/-/ngx-pagination-6.0.3.tgz"
+  "version" "6.0.3"
   dependencies:
     "tslib" "^2.3.0"
 

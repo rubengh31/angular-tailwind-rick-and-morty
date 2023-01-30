@@ -23,6 +23,12 @@ export class CrudComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   editing: boolean = false;
 
+  //pagination
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3, 6, 9, 12];
+
   constructor(
     private crudService: CrudService,
     private fb: FormBuilder,
@@ -120,5 +126,16 @@ export class CrudComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  //Pagination
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.products$ = this.crudService.getAll();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.products$ = this.crudService.getAll();
   }
 }

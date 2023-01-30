@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LocationsService } from '../../services/locations.service';
 
@@ -15,7 +21,10 @@ export class LocationsComponent implements OnInit, OnDestroy {
   tableCols = ['name', 'type', 'dimension', 'created', 'id'];
   tableData: any = [];
 
-  constructor(private locationsService: LocationsService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private locationsService: LocationsService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getLocations();
