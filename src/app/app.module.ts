@@ -6,7 +6,6 @@ import {
   NgModule,
   NO_ERRORS_SCHEMA,
 } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -20,12 +19,15 @@ import { CommonModule } from '@angular/common';
 import { LoaderService } from './shared/components/loader/loader.service';
 import { LoaderInterceptor } from './core/interceptors/loader.interceptor';
 import { LoaderComponent } from './shared/components/loader/loader.component';
+import { HttpErrorInterceptor } from './core/interceptors/httpErrorInterceptor.service';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, LoaderComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
+    BrowserModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
@@ -37,6 +39,11 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
   providers: [
     LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
     TimeAgoPipe,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
