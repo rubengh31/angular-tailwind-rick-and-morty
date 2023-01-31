@@ -10,7 +10,7 @@ export class RxjsService {
   getPokemons(limit: number, offset: number): Observable<any> {
     let queryParams = { limit: limit, offset: offset };
     return this.http
-      .get<any>(`https://pokeapi.co/api/ertyv2/pokemon?limit=`, {
+      .get<any>(`https://pokeapi.co/api/v2/pokemon?limit=`, {
         params: queryParams,
       })
       .pipe(

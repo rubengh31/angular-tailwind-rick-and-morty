@@ -7,7 +7,6 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(

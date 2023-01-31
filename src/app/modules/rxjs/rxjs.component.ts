@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RxjsService } from './rxjs.service';
-import { Observable, delay, map } from 'rxjs';
+import { Observable, catchError, delay, map, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-rxjs',
@@ -14,11 +14,17 @@ export class RxjsComponent {
   public searchPokemon = '';
   withSearchFilter: boolean = false;
   textSearched: string = '';
+  errorObject: any;
 
   constructor(private rxjsService: RxjsService) {}
 
   ngOnInit(): void {
-    this.pokemons$ = this.rxjsService.getPokemons(this.limit, this.offset);
+    this.pokemons$ = this.rxjsService.getPokemons(this.limit, this.offset).pipe(
+      catchError((err) => {
+        this.errorObject = err;
+        return throwError(() => new Error(err));
+      })
+    );
   }
 
   sortBy(event: any) {
