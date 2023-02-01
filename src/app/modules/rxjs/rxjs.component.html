@@ -1,4 +1,4 @@
-<ng-container *ngIf="pokemons$ | async as pokemons; else loadingOrError">
+<ng-container *ngIf="pokemons$ | async as pokemons">
   <div class="flex flex-col">
     <div class="m-5">
       <div class="inline-block mr-2">
@@ -22,6 +22,7 @@
           >Select an option</label
         >
         <select
+          [value]="option"
           (change)="sortBy($event)"
           class="inline-flex w-[20rem] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
@@ -49,10 +50,10 @@
           </div>
           <div
             *ngFor="let abilities of pokemon.abilities"
-            class="inline-block p-1 mr-2 rounded {{ abilities.type }}"
+            class="inline-block p-1 mr-2 rounded {{ abilities }}"
           >
             <p class="text-white text-md">
-              {{ abilities.type }}
+              {{ abilities }}
             </p>
           </div>
         </div>
@@ -61,7 +62,7 @@
   </div>
 </ng-container>
 
-<ng-template #loadingOrError>
+<ng-template *ngIf="errorObject">
   <div
     class="lg:px-24 lg:py-24 md:py-20 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-28 gap-16"
   >

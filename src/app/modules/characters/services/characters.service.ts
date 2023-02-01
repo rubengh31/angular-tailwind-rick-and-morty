@@ -26,7 +26,7 @@ export class CharactersService {
     return this.http.get<CharacterResults>(`${this.API_URL}/character/${id}`);
   }
 
-  getPokemons(limit: number, offset: number): Observable<any> {
+  getPokemons(limit?: number, offset?: number): Observable<any> {
     return this.http
       .get<any>(
         `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`

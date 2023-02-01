@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RxjsService } from './rxjs.service';
-import { Observable, catchError, delay, map, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { CustomPokemon } from './pokemon.interface';
 
 @Component({
   selector: 'app-rxjs',
@@ -8,12 +9,11 @@ import { Observable, catchError, delay, map, throwError } from 'rxjs';
   styleUrls: ['./rxjs.component.scss'],
 })
 export class RxjsComponent {
+  pokemons$: Observable<any>;
+  public searchPokemon: string = '';
+  option: any = 'lowestOrderFirst';
   limit: number = 151;
   offset: number = 0;
-  pokemons$: Observable<any>;
-  public searchPokemon = '';
-  withSearchFilter: boolean = false;
-  textSearched: string = '';
   errorObject: any;
 
   constructor(private rxjsService: RxjsService) {}
@@ -27,44 +27,25 @@ export class RxjsComponent {
     );
   }
 
-  sortBy(event: any) {
-    const target = event.target as HTMLTextAreaElement;
-    if (target.value === 'lowestOrderFirst') {
-      this.lowestOrderFirst();
-    } else if (target.value === 'AtoZ') {
-      this.AtoZ();
-    } else if (target.value === 'ZtoA') {
-      this.ZtoA();
-    } else if (target.value === 'highestOrderFirst') {
-      this.highestOrderFirst();
-    }
-  }
-
-  lowestOrderFirst() {
-    this.pokemons$ = this.rxjsService
-      .getPokemons(this.limit, this.offset)
-      .pipe(map((data) => data.sort((a: any, b: any) => a.id - b.id)));
-  }
-
-  highestOrderFirst() {
-    this.pokemons$ = this.rxjsService
-      .getPokemons(this.limit, this.offset)
-      .pipe(map((data) => data.sort((a: any, b: any) => b.id - a.id)));
-  }
-
-  AtoZ() {
-    this.pokemons$ = this.rxjsService
-      .getPokemons(this.limit, this.offset)
-      .pipe(
-        map((data) => data.sort((a: any, b: any) => (a.name < b.name ? -1 : 1)))
-      );
-  }
-
-  ZtoA() {
-    this.pokemons$ = this.rxjsService
-      .getPokemons(this.limit, this.offset)
-      .pipe(
-        map((data) => data.sort((a: any, b: any) => (a.name < b.name ? 1 : -1)))
-      );
+  sortBy(event: any): void {
+    this.option = event.target.value as HTMLTextAreaElement;
+    this.pokemons$ = this.rxjsService.getPokemons(this.limit, this.offset).pipe(
+      map((data: CustomPokemon[]) => {
+        if (this.option === 'lowestOrderFirst') {
+          return data.sort((a: any, b: any) => a.id - b.id);
+        } else if (this.option === 'highestOrderFirst') {
+          return data.sort((a: any, b: any) => b.id - a.id);
+        } else if (this.option === 'AtoZ') {
+          return data.sort((a: any, b: any) => (a.name < b.name ? -1 : 1));
+        } else if (this.option === 'ZtoA') {
+          return data.sort((a: any, b: any) => (a.name < b.name ? 1 : -1));
+        }
+        return data;
+      }),
+      catchError((err) => {
+        this.errorObject = err;
+        return throwError(() => new Error(err));
+      })
+    );
   }
 }

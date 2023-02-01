@@ -6,7 +6,6 @@ import {
 import { DetailCardComponent } from './components/cards/detail-card/detail-card.component';
 import { SimpleCardComponent } from './components/cards/simple-card/simple-card.component';
 import { TableComponent } from './components/table/table.component';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { InputSearchComponent } from './components/input-search/input-search.component';
@@ -18,7 +17,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
     TableComponent,
     InputSearchComponent,
   ],
-  imports: [CommonModule, RouterModule, MaterialModule],
+  imports: [RouterModule, MaterialModule],
   exports: [
     SimpleCardComponent,
     DetailCardComponent,
