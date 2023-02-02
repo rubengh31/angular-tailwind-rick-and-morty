@@ -22,6 +22,9 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 import { HttpErrorInterceptor } from './core/interceptors/httpErrorInterceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';
+
 @NgModule({
   declarations: [AppComponent, NavbarComponent, LoaderComponent],
   imports: [
@@ -35,6 +38,15 @@ import { BrowserModule } from '@angular/platform-browser';
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: 'NGRX' }),
     EffectsModule.forRoot([CharactersEffects]),
+
+    // Import the module into the application, with configuration
+    AuthModule.forRoot({
+      domain: 'dev-eu5ctodk04g101rx.us.auth0.com',
+      clientId: 'Qxjx1b3qqHgt0q1XwIn9PDUNvJVGLZWH',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
+    }),
   ],
   providers: [
     LoaderService,
