@@ -60,7 +60,7 @@ const routes: Routes = [
         (m) => m.RxjsOperatorsModule
       ),
   },
-  { path: '', redirectTo: 'episodes', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

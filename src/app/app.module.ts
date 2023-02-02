@@ -1,4 +1,3 @@
-import { AuthButtonComponent } from './core/auth-button/auth-button.component';
 import { CharactersEffects } from './state/effects/characters.effects';
 import { ROOT_REDUCERS } from './state/app.state';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -27,12 +26,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    LoaderComponent,
-    AuthButtonComponent,
-  ],
+  declarations: [AppComponent, NavbarComponent, LoaderComponent],
   imports: [
     AppRoutingModule,
     HttpClientModule,
@@ -52,6 +46,8 @@ import { AuthModule } from '@auth0/auth0-angular';
       authorizationParams: {
         redirect_uri: window.location.origin,
       },
+      cacheLocation: 'localstorage',
+      useRefreshTokens: true,
     }),
   ],
   providers: [
