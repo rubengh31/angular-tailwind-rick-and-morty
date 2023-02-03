@@ -1,61 +1,61 @@
-<div class="max-w-sm rounded overflow-hidden shadow-lg m-3">
-  <form [formGroup]="productsForm">
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">Add Product</div>
-      <input
-        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-        formControlName="title"
-        placeholder="Title"
-        type="text"
-        data-cy="crud-input-title"
-      />
-      <input
-        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mt-2"
-        formControlName="price"
-        placeholder="Price"
-        type="text"
-        data-cy="crud-input-price"
-      />
-      <input
-        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mt-2"
-        formControlName="description"
-        placeholder="Description"
-        type="text"
-        data-cy="crud-input-description"
-      />
-    </div>
-    <div class="px-6 pt-4 pb-2">
-      <ng-container *ngIf="editing; else newProduct">
-        <button
-          class="float-right inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
-          (click)="cancel()"
-          data-cy="crud-product-button-cancel"
-        >
-          Cancel
-        </button>
-        <button
-          class="float-right inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2"
-          (click)="update(productsForm.value)"
-          data-cy="crud-product-button-edit"
-        >
-          Edit product
-        </button>
-      </ng-container>
-      <ng-template #newProduct>
-        <button
-          class="float-right inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-700 mr-2 mb-2"
-          (click)="create()"
-          [disabled]="productsForm.invalid"
-          data-cy="crud-product-button-add"
-        >
-          Add new product
-        </button>
-      </ng-template>
-    </div>
-  </form>
-</div>
-
 <ng-container *ngIf="products$ | async as products">
+  <div class="max-w-sm rounded overflow-hidden shadow-lg m-3">
+    <form [formGroup]="productsForm">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">Add Product</div>
+        <input
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+          formControlName="title"
+          placeholder="Title"
+          type="text"
+          data-cy="crud-input-title"
+        />
+        <input
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mt-2"
+          formControlName="price"
+          placeholder="Price"
+          type="text"
+          data-cy="crud-input-price"
+        />
+        <input
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mt-2"
+          formControlName="description"
+          placeholder="Description"
+          type="text"
+          data-cy="crud-input-description"
+        />
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <ng-container *ngIf="editing; else newProduct">
+          <button
+            class="float-right inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-red-700 mr-2 mb-2"
+            (click)="cancel()"
+            data-cy="crud-product-button-cancel"
+          >
+            Cancel
+          </button>
+          <button
+            class="float-right inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2 mb-2"
+            (click)="update(productsForm.value)"
+            data-cy="crud-product-button-edit"
+          >
+            Edit product
+          </button>
+        </ng-container>
+        <ng-template #newProduct>
+          <button
+            class="float-right inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-700 mr-2 mb-2"
+            (click)="create()"
+            [disabled]="productsForm.invalid"
+            data-cy="crud-product-button-add"
+          >
+            Add new product
+          </button>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+
   <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
     <table
       class="w-full border-collapse bg-white text-left text-sm text-gray-500"

@@ -1,34 +1,36 @@
-<div
-  infinite-scroll
-  [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="1000"
-  (scrolled)="onScroll()"
-  class="flex-container"
->
-  <div>
-    <button
-      type="button"
-      class="inline-flex ml-2 hover:shadow-form rounded-md bg-[#0fd05c] py-3 px-8 text-center text-base font-semibold text-white outline-none"
-      (click)="onScroll()"
-    >
-      See more
-    </button>
+<ng-container *ngIf="cats.length > 0">
+  <div
+    infinite-scroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()"
+    class="flex-container"
+  >
+    <div>
+      <button
+        type="button"
+        class="inline-flex ml-2 hover:shadow-form rounded-md bg-[#0fd05c] py-3 px-8 text-center text-base font-semibold text-white outline-none"
+        (click)="onScroll()"
+      >
+        See more
+      </button>
+    </div>
+    <div>
+      <mat-card *ngFor="let cat of cats">
+        <mat-card-header>
+          <div>
+            <mat-card-title>{{ cat.name }}</mat-card-title>
+            <mat-card-subtitle
+              >Temperament: {{ cat.temperament }}</mat-card-subtitle
+            >
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            <span>{{ cat.description }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <div>
-    <mat-card *ngFor="let cat of cats">
-      <mat-card-header>
-        <div>
-          <mat-card-title>{{ cat.name }}</mat-card-title>
-          <mat-card-subtitle
-            >Temperament: {{ cat.temperament }}</mat-card-subtitle
-          >
-        </div>
-      </mat-card-header>
-      <mat-card-content>
-        <div>
-          <span>{{ cat.description }}</span>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
+</ng-container>

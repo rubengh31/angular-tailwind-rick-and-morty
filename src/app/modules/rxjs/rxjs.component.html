@@ -37,7 +37,7 @@
     </div>
     <div class="m-3 flex-wrap inline-flex">
       <div
-        class="items-end shadow-lg m-2"
+        class="pokemon-card items-end shadow-lg m-2"
         *ngFor="let pokemon of pokemons | filterPokemon : searchPokemon"
       >
         <img [src]="pokemon.image" alt="{{ pokemon.name }}" />

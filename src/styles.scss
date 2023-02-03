@@ -28,10 +28,6 @@
   font-size: 12px;
 }
 
-body {
-  background-color: #fff;
-}
-
 html,
 body {
   height: 100%;
@@ -45,4 +41,34 @@ body {
 button:disabled {
   background-color: #97929248;
   cursor: not-allowed;
+}
+
+div#main-container {
+  height: -webkit-fill-available;
+}
+
+#main-container.darkTheme {
+  background-color: #000;
+  span,
+  h1,
+  p,
+  label,
+  a {
+    color: #fff;
+  }
+
+  .max-w-sm.rounded.overflow-hidden.shadow-lg.m-3 {
+    background-color: aliceblue;
+  }
+}
+
+#main-container.lightTheme {
+  background-color: #fff;
+  span,
+  h1,
+  p,
+  label,
+  a {
+    color: #000;
+  }
 }
