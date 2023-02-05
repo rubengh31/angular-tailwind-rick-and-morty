@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RxjsService } from './rxjs.service';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { CustomPokemon } from './pokemon.interface';
@@ -7,10 +7,11 @@ import { CustomPokemon } from './pokemon.interface';
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styleUrls: ['./rxjs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RxjsComponent {
   pokemons$: Observable<any>;
-  public searchPokemon: string = '';
+  public searchPokemon!: string;
   option: any = 'lowestOrderFirst';
   limit: number = 151;
   offset: number = 0;

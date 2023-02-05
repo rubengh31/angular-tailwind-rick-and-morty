@@ -1,6 +1,6 @@
 <ng-container *ngIf="pokemons$ | async as pokemons">
-  <div class="flex flex-col">
-    <div class="m-5">
+  <div class="flex flex-wrap">
+    <div class="m-5 basis-full">
       <div class="inline-block mr-2">
         <label for="searchPokemon" class="form-label inline-block mr-2"
           >Name or number</label
@@ -35,11 +35,10 @@
         </select>
       </div>
     </div>
-    <div class="m-3 flex-wrap inline-flex">
-      <div
-        class="pokemon-card items-end shadow-lg m-2"
-        *ngFor="let pokemon of pokemons | filterPokemon : searchPokemon"
-      >
+    <ng-container
+      *ngFor="let pokemon of pokemons | filterPokemon : searchPokemon"
+    >
+      <app-content-card>
         <img [src]="pokemon.image" alt="{{ pokemon.name }}" />
         <div class="px-6 py-4">
           <div class="text-xl mb-2">
@@ -57,8 +56,8 @@
             </p>
           </div>
         </div>
-      </div>
-    </div>
+      </app-content-card>
+    </ng-container>
   </div>
 </ng-container>
 

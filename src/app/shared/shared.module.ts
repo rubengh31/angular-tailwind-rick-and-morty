@@ -1,3 +1,4 @@
+import { ContentCardComponent } from './components/content-card/content-card.component';
 import {
   CUSTOM_ELEMENTS_SCHEMA,
   NgModule,
@@ -16,6 +17,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
     DetailCardComponent,
     TableComponent,
     InputSearchComponent,
+    ContentCardComponent,
   ],
   imports: [RouterModule, MaterialModule],
   exports: [
@@ -23,6 +25,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
     DetailCardComponent,
     TableComponent,
     InputSearchComponent,
+    ContentCardComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [],
